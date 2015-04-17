@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" ng-app="Twitter">
+<head>
+  <meta charset="utf-8">
+  <title>eyeHome Social Feed</title>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel='stylesheet' href='/stylesheets/TweetList.css' />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/foursides.css">
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-resource.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-sanitize.min.js"></script>
+	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js"></script>-->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
+	<script src="//platform.twitter.com/widgets.js"></script>
+	<script src="/javascripts/TweetList.js"></script>
+
+</head>
+<body>
+	<!-- the root element of the view assigned to the TweetList javascript controller-->
+	<div ng-controller="TweetList">
+		<!--<div id="search-container" class="row">
+			<div class="col-lg-3">
+
+				//this form will trigger the getTweets function in the javascript controller on submit
+				<form class="input-group" ng-submit="getTweets()" >
+	  			<span class="input-group-addon">@</span>
+
+					//this text input is binded to a variable in the javascript controller
+				  <input type="text" class="form-control" placeholder="brilliant_bob" ng-model="username">
+
+					<span class="input-group-btn">
+		        <button class="btn btn-default" type="submit">Search</button>
+		      </span>
+
+				</form>
+   		</div>
+		</div>-->
+		<div id="screen1" ng-show="currentScreen == 1">
+			<div class='rectangleLeft' ng-click="previous()" id="rl">
+				<h4>Previous Tweet</h4>
+				<div class="progress" id="rlp"></div>
+			</div>
+			<div class='rectangleTop' ng-click="createTweet()" id="rt">
+				<h4>Write New Tweet</h4>
+				<div class="progress" id="rtp"></div>
+			</div>
+			<div class='rectangleRight' ng-click="next()" id="rr">
+				<h4>Next Tweet</h4>
+				<div class="progress" id="rrp"></div>
+			</div>
+			<div class='rectangleBottom' ng-click="toScreen2()" id="rb">
+				<h4>Tweet Interactions</h4>
+				<div class="progress" id="rbp"></div>
+			</div>
+		</div>
+		
+		<div id="screen2" ng-show="currentScreen == 2">
+			<a href="https://twitter.com/intent/favorite?tweet_id={{tweetID}}">
+				<div class='rectangleLeft' id="rl2">
+					<h4>Favorite</h4>
+					<div class="progress" id="rlp2"></div>
+				</div>
+			</a>
+			<a href="https://twitter.com/intent/retweet?tweet_id={{tweetID}}">
+				<div class='rectangleTop' id="rt2">
+					<h4>Retweet</h4>
+					<div class="progress" id="rtp2"></div>
+				</div>
+			</a>
+			<a ng-href="https://twitter.com/intent/tweet?in_reply_to={{tweetID}}">
+			<div class='rectangleRight' id="rr2">
+				<h4>Reply</h4>
+				<div class="progress" id="rrp2"></div>
+			</div>
+			</a>
+			
+			<div class='rectangleBottom' ng-click="toScreen1()" id="rb2">
+				<h4>Back</h4>
+				<div class="progress" id="rbp2"></div>
+			</div>
+		</div>
+
+		<div id="center" class="row clearfix">
+			<div class="greeting" class="row">
+				<div class="col-lg-12">
+					<span><img id="twitter-logo" src="images/Twitter_logo_white.png" />@<%=username%>'s Timeline</span>
+				</div>
+			</div>
+			<div class="col-lg-12">
+		    	<div id="tweet-list">
+
+		    		<!-- this div will repeat for every tweet object in the array using a template-expanding directive -->
+		    		<div ng-repeat="tweet in tweetsResult" class="tweet-item">
+						<span></span>
+		    			<!-- sanitized HTML binding -->
+							<div ng-show="tweet_index==$index">
+								<span class="greeting">{{$index+1}}/15</span>
+								<div ng-bind-html="tweet.oEmbed.html"></div>
+							</div>
+
+							<!-- binding to Tweet source property -->
+							<div class="tweet-details">
+								<!--Tweeted from <span ng-bind-html="tweet.source"></span>-->
+
+								<!-- play around with rendering different Tweet properties -->
+								<!-- <p>{{tweet.user.screen_name}}</p> -->
+								<!-- <p>{{tweet.text}}</p> -->
+							</div>
+		    		</div>
+
+		    	</div>
+
+		  </div>
+  	</div>
+	</div>
+
+</body>
+</html>

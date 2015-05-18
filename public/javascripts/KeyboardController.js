@@ -1,6 +1,5 @@
 var app = angular.module('Twitter', ['ngResource', 'ngSanitize']);
 
-
 app.controller('TweetList', function($scope, $resource, $timeout) {
 
     /**
@@ -59,7 +58,7 @@ app.controller('TweetList', function($scope, $resource, $timeout) {
 
         // for paging - https://dev.twitter.com/docs/working-with-timelines
         $scope.maxId = res[res.length - 1].id;
-		$scope.tweetID = $scope.tweetsResult[0].id_str;
+        $scope.tweetID = $scope.tweetsResult[0].id_str;
 
         // render tweets with widgets.js
         $timeout(function () {
@@ -82,81 +81,48 @@ app.controller('TweetList', function($scope, $resource, $timeout) {
     $scope.getMoreTweets = function () {
       getTweets(true);
     }
-	
-	/*indexing tweets*/
-	$scope.tweet_index = 0;
-	$scope.next = function() {
+    
+    /*indexing tweets*/
+    $scope.tweet_index = 0;
+    $scope.next = function() {
         if ($scope.tweet_index >= $scope.tweetsResult.length -1) {
             $scope.tweet_index = 0;
         }
         else {
             $scope.tweet_index++;
         }
-		$scope.tweetID = $scope.tweetsResult[$scope.tweet_index].id_str;
+        $scope.tweetID = $scope.tweetsResult[$scope.tweet_index].id_str;
 
     console.log("next was clicked");
     };
-	
-	$scope.previous = function() {
+    
+    $scope.previous = function() {
         if ($scope.tweet_index > 0) {
             $scope.tweet_index--;
         }
-		$scope.tweetID = $scope.tweetsResult[$scope.tweet_index].id_str;
+        $scope.tweetID = $scope.tweetsResult[$scope.tweet_index].id_str;
   };
 
-	$scope.currentScreen = 1;
-	$scope.toScreen2 = function () {
-		$scope.currentScreen = 2;
-	};
-	$scope.toScreen1 = function () {
-		$scope.currentScreen = 1;
-	};
-	$scope.createTweet = function(){
-		//open keyboard
-		//continuously read in twitter.txt
-		$scope.tweets.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
-			console.log(data);
-		});
-		
-	};
+    $scope.currentScreen = 1;
+    $scope.toScreen2 = function () {
+        $scope.currentScreen = 2;
+    };
+    $scope.toScreen1 = function () {
+        $scope.currentScreen = 1;
+    };
+    $scope.createTweet = function(){
+        //open keyboard
+        //continuously read in twitter.txt
+        $scope.tweets.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
+            console.log(data);
+        });
+        
+    };
 
-// have yet to check which page we're on (only works on first page)
-// may also want to refactor this out into its own controller
-  $scope.keyPress = function(e, currentScreen) {
-    console.log('keyup', e);
-    var key = e.keyCode ? e.keyCode : e.which;
-
-    if (currentScreen == 1) {
-       if (key == 37) //left
-        $scope.previous();
-      else if (key == 38) //up
-          $scope.createTweet();
-      else if (key == 39) // right
-          $scope.next();
-      else if (key == 40) // down
-          $scope.toScreen2();
-      else
-          console.log(e.keyCode);
-    }
-    else { // is 2
-
-      //TODO fix this because we don't want any pop ups (fix in index)
-       if (key == 37) //left
-        $scope.previous();
-    else if (key == 38) //up
-        $scope.createTweet();
-    else if (key == 39) // right
-        $scope.next();
-    else if (key == 40) // down
-        $scope.toScreen2();
-    else
-        console.log(e.keyCode);
-    }
-   
-
-    console.log("current screen is " + currentScreen);
+  $scope.keyPress = function(keyEvent) {
+    console.log('keyup', keyEvent);
   }
-	
+    
 
     init();
 });

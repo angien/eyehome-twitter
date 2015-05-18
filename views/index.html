@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" ng-app="Twitter">
+<html lang="en" ng-app="Twitter" ng-controller="TweetList"  ng-keyup="keyPress($event, currentScreen)">
+
 <head>
   <meta charset="utf-8">
   <title>eyeHome Social Feed</title>
@@ -20,7 +21,7 @@
 </head>
 <body>
 	<!-- the root element of the view assigned to the TweetList javascript controller-->
-	<div ng-controller="TweetList">
+	<div>
 		<!--<div id="search-container" class="row">
 			<div class="col-lg-3">
 

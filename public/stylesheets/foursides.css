@@ -2,7 +2,7 @@
   position: fixed;
   right: 50%;
   top: 50%;
-  max-height: 550px;
+  max-height: none;
   transform: translate(50%,-50%);
   padding: 10px;
 }

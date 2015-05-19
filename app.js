@@ -1,5 +1,6 @@
 var express = require('express');
 var session = require('express-session');
+var keyboard = require('node_keyboard');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var index = require('./routes/index');
@@ -8,6 +9,8 @@ var app = express();
 var passport = require('passport')
   , TwitterStrategy = require('passport-twitter').Strategy
   , ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+
+
 
 //twitter login  
 passport.use(new TwitterStrategy({

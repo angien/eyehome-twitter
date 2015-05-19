@@ -10,6 +10,7 @@
   <link rel='stylesheet' href='/stylesheets/TweetList.css' />
   <link rel="stylesheet" type="text/css" href="/stylesheets/foursides.css">
 	
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-resource.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-sanitize.min.js"></script>
@@ -59,7 +60,7 @@
 		</div>
 		
 		<div id="screen2" ng-show="currentScreen == 2">
-			<a href="https://twitter.com/intent/favorite?tweet_id={{tweetID}}">
+			<a href="https://twitter.com/intent/favorite?tweet_id={{tweetID}}" ng-click="favorite()">
 				<div class='rectangleLeft' id="rl2">
 					<h4>Favorite</h4>
 					<div class="progress" id="rlp2"></div>

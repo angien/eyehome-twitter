@@ -82,6 +82,27 @@ app.controller('TweetList', function($scope, $resource, $timeout) {
     $scope.getMoreTweets = function () {
       getTweets(true);
     }
+
+    $scope.favorite = function() {
+
+      console.log("calling favorite");
+       window.setTimeout(function() {
+        console.log("timeout");
+        //$.Event("keydown", {keyCode: 16});
+
+
+        $.get("/keypress");
+
+
+//         var press = jQuery.Event("keypress");
+// press.keyCode = 13;
+// press.which = 13;
+// $('#screen1').keypress(function(){alert("hello");}).trigger(press);
+
+        }, 1000); 
+
+      
+    }
 	
 	/*indexing tweets*/
 	$scope.tweet_index = 0;

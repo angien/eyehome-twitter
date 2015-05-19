@@ -2,7 +2,9 @@ var express = require('express');
 var passport = require('passport')
 , TwitterStrategy = require('passport-twitter').Strategy
 , ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+var keyboard = require('node_keyboard');
 var router = express.Router();
+
 
 /* GET home page. */
 router.get('/',
@@ -35,3 +37,11 @@ router.get('/login',
   function(req, res) {
     res.render('login');
   });  
+
+router.get('/keypress',
+  function(req, res) {
+    console.log("performing keyboard stuff");
+    // keyboard.type(keyboard.Key_PrintScreen);
+    // keyboard.press(keyboard.Key_Return);
+    // keyboard.release(keyboard.Key_Return);
+  })

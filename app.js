@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 var index = require('./routes/index');
 var tweets = require('./routes/tweets');
+
+
 var app = express();
 var passport = require('passport')
   , TwitterStrategy = require('passport-twitter').Strategy

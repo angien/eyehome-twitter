@@ -2,7 +2,8 @@ var express = require('express');
 var passport = require('passport')
 , TwitterStrategy = require('passport-twitter').Strategy
 , ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
-var keyboard = require('node_keyboard');
+
+var robot = require('robotjs');
 var router = express.Router();
 
 
@@ -41,7 +42,5 @@ router.get('/login',
 router.get('/keypress',
   function(req, res) {
     console.log("performing keyboard stuff");
-    // keyboard.type(keyboard.Key_PrintScreen);
-    // keyboard.press(keyboard.Key_Return);
-    // keyboard.release(keyboard.Key_Return);
-  })
+    robot.keyTap("enter");
+  });

@@ -1,6 +1,5 @@
 var express = require('express');
 var session = require('express-session');
-var keyboard = require('node_keyboard');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var index = require('./routes/index');

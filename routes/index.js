@@ -3,7 +3,6 @@ var passport = require('passport')
 , TwitterStrategy = require('passport-twitter').Strategy
 , ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
-var robot = require('robotjs');
 var router = express.Router();
 
 
